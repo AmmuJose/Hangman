@@ -41,7 +41,7 @@ var hangman = {
 		document.querySelector("#lives").innerHTML = this.lives;
 		document.querySelector("#winCount").innerHTML = winCount;	
 		document.querySelector("#loseCount").innerHTML = loseCount;	
-		document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals1.PNG" class="img-responsive">';	
+		document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals1.png" class="img-responsive">';	
 	},
 
 	// proceed to hangman rules if user input is an alphabet
@@ -185,7 +185,7 @@ var hangman = {
 		if(this.lives === 0) {
 			loseCount++;
 			this.playAudio('assets/sounds/gameLost.mp3');
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.PNG" class="img-responsive">';	
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png" class="img-responsive">';	
 			this.gameOver = true;
 		}
 
@@ -213,9 +213,9 @@ var hangman = {
 	// shows hangman images
 	showHangmanImage: function() {
 		if(this.lives != 10){
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/hangman-'+ (9-this.lives) +'.PNG">';
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/hangman-'+ (9-this.lives) +'.png">';
 		}else{
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.PNG">';
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png">';
 		}
 	}, 
 }
