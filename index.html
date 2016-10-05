@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Style Sheets -->
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+	<title>Hangman</title>
+</head>
+<body>
+	<div class="container">
+		<!-- Header -->
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<h1>Hangman</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-sm-12">
+				<p id="rule">Press Any Letter to Start. <br>
+				Category is Animals and Birds</p>
+			</div>
+		</div>	
+		<!-- content -->
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-2 col-sm-2"> </div>
+				<div class="col-md-4 col-sm-4"> 					
+					<div class="row"> Number of Lives Left: <span id="lives">10</span> </div>
+					<div class="row">Wins:  <sapn id="winCount"></span> </div>
+					<div class="row">Losses:  <span id="loseCount"></span> </div>	
+				</div>	
+							
+				<div class="col-md-4 col-sm-5">									
+					<div class="row"> <h3>Word : <span id="word"></span></h3> </div>
+					<div class="row">
+						<div>Letters Already Gussed: <span id="userInputs"></span></div>
+					</div>					
+					<div class="row"> <div id="warningMessage"></div> </div>										
+				</div>
+				<div class="col-md-2 col-sm-1"> </div>				
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-xs-12">
+				<div class="col-md-2 col-sm-2"> </div>
+				<div class="col-md-4 col-sm-4"> 
+						<div class="row"><div id="hangman"></div></div> 
+				</div>
+				<div class="col-md-6 col-sm-6"> </div>
+			</div>	
+		</div>
+</body>
+</html>

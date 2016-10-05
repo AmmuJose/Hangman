@@ -1,0 +1,203 @@
+// hangman Object
+var hangman = {
+
+	words: ["dinasaur", "Hippopotamus", "Honeybadger", "porcupine"],	
+	lives: 10,
+	userInputs: [],
+	matchedLettersCount: 0,
+	computerWord: '',
+	computerWordLength: 0,
+	userInput: "",
+	wordWithMatchedLetters: "",
+
+	// 
+	// initalies hangman properties
+	init: function() {
+		this.words = ["dinasaur", "Hippopotamus", "Honeybadger", "porcupine"];
+		this.lives = 10;
+		this.userInputs = [];
+		this.matchedLettersCount = 0;
+		this.computerWord = "";
+		this.computerWordLength = 0;
+		this.userInput = "";
+	}
+
+	// generate word randomly	
+	guessAWord: function() {
+		var computerRandomNumber = Math.floor(Math.random() * this.words.length);
+		this.computerWord = this.words[computerRandomNumber];
+		console.log(this.computerWord);
+	},
+
+	//calculate word length
+	calculateWordLength: function() {		
+		this.computerWordLength = this.computerWord.length;
+	},
+
+	// create string with all dashes to print on initial load
+	createInitialWordToPrint: function() {
+		var word = "";
+		for (var i = 0; i < this.computerWordLength; i++) {
+			word += '_ '; 
+		}
+		this.wordWithMatchedLetters = word;
+		return word;
+	},
+	
+	// check to see if user already tried the input
+	checkInputAlreadyTried: function() {
+		if(this.userInputs.length !== 0){
+			var result = this.userInputs.indexOf(this.userInput) < 0 ? false:true;
+			return result;
+		}else{
+			return false;
+		}
+	},
+
+	// array for tried values
+	pushToTriedValues: function() {
+		this.userInputs.push(this.userInput);
+	},
+
+	//check if input is a letter
+	isAlphabet: function(){
+		var pattern = /[a-z]/i;
+		return this.userInput.match(pattern);
+	},
+	
+	//check if word contains the letter user entered
+	checkWordContainsUserInput: function() {
+		var contains = false;
+		for (var i = 0; i < this.computerWordLength; i++) {
+			if(this.computerWord.charAt(i).toLowerCase() == this.userInput) {
+				contains = true;
+			}
+		}
+
+		return contains;
+	},
+
+	createWordWithMatchedLetters: function() {
+		for (var i = 0; i < this.computerWordLength; i++) {				
+			if(this.computerWord.charAt(i).toLowerCase() == this.userInput) {
+				this.wordWithMatchedLetters = this.wordWithMatchedLetters.substring(0, i*2) + 
+												this.userInput.toLowerCase() + this.wordWithMatchedLetters.substring((i*2+1));
+				this.matchedLettersCount++;
+			}
+		}
+	},
+}
+
+
+
+window.onload = function(event) {
+
+	var hangmanObj;
+	var initialWordToPrint;
+	var gameOver = true;
+
+	InitialSetUp();
+	startHangman();
+
+	/*document.querySelector("#play").onclick = function() {
+		InitialSetUp();
+		startHangman();
+	};*/
+
+
+	function InitialSetUp(){
+		hangmanObj = Object.create(hangman);
+
+		hangmanObj.guessAWord();
+		hangmanObj.calculateWordLength();
+		initialWordToPrint = hangmanObj.createInitialWordToPrint();
+		gameOver = false;	
+		printWord(initialWordToPrint);
+	}
+
+	function startHangman(){
+		document.onkeyup = function(e) {
+			var triedInputs = "";
+			hangmanObj.userInput = String.fromCharCode(e.keyCode).toLowerCase();
+
+			if(hangmanObj.lives !== 0 && gameOver === false) {
+				if(hangmanObj.isAlphabet()) {
+					if(!hangmanObj.checkInputAlreadyTried()) {
+
+						document.querySelector("#warningMessage").innerHTML = "";
+						hangmanObj.pushToTriedValues();
+						printUserTriedInputs(triedInputs);
+
+						if(!hangmanObj.checkWordContainsUserInput()) {
+
+							printLivesLeft();
+							printLoseMessage();
+							
+						}else{
+							hangmanObj.createWordWithMatchedLetters();
+							document.querySelector("#word").innerHTML = hangmanObj.wordWithMatchedLetters;
+							printWinMessage();											
+						}
+
+					}else{
+						printWarningMessage("You Have Already Tried Letter: <b>" + hangmanObj.userInput + "</b>");
+					}
+				}else {
+					printWarningMessage("Please Enter a Letter.");
+				}
+			} else {
+				printWarningMessage("To Play Again <br> Please Click 'Play Again' button.");
+			}		
+		} //End onkeyup
+	}
+
+	// print word
+	function printWord(word) {
+		document.querySelector("#word").innerHTML = word;
+	}
+
+	// print warning message
+	function printWarningMessage(warningMessage) {
+		var html = "<div  class='text-danger'>";
+		html += warningMessage;
+		html += "</div>";
+		document.querySelector("#warningMessage").innerHTML = html;
+	}
+
+	// print user tried letters
+	function printUserTriedInputs(triedInputs) {
+		document.querySelector("#userInputs").innerHTML = "";
+					
+		for(var i =0; i < hangmanObj.userInputs.length; i++) {
+			triedInputs += " " + hangmanObj.userInputs[i] + " ";
+		}		
+		document.querySelector("#userInputsDesc").innerHTML = "You have Tried:  ";
+		document.querySelector("#userInputs").innerHTML = triedInputs;
+
+	}
+
+	// print number of lives left
+	function printLivesLeft() {
+		hangmanObj.lives--;
+		document.querySelector("#lives").innerHTML = hangmanObj.lives;
+	}
+
+	// print you win
+	function printWinMessage() {
+		if(hangmanObj.matchedLettersCount == hangmanObj.computerWordLength){
+			document.querySelector("#winlose").innerHTML = "you win";	
+			gameOver = true;			
+		}
+	}
+
+	// print you lose 
+	function printLoseMessage() {
+		if(hangmanObj.lives === 0) {
+			document.querySelector("#winlose").innerHTML = "you lose";
+			document.querySelector("#correctWord").innerHTML = "Correct Word: " + hangmanObj.computerWord;
+		}
+	}
+
+}//End window onload
+
+
