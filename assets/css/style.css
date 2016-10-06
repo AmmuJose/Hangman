@@ -24,7 +24,12 @@ body{
 }
 
 #word {
-	font-size: 2em; 	
+	font-size: 1.7em; 	
+}
+
+#userInputs,
+.category {
+	color: #3399ff;
 }
 
 #hangman-img-holder {
