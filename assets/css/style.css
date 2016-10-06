@@ -29,3 +29,27 @@ img {
 	background-color: black;
 	border:10px solid red;
 }
+
+#letterBtn li{
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #4aaaa5;
+	color: #000;
+	margin: 5px;
+	text-align: center;
+	font-weight: bold;
+	border: 1px solid #5bbbb9;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#letterBtn li{
+	display: inline-block;
+}
+
+#letterBtn li:hover {
+	background-color: #9cccc9;
+	cursor: pointer;
+}
+

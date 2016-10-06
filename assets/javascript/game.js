@@ -14,6 +14,11 @@ var hangman = {
 			'Antelope',
 			'Pronghorn',
 			'Penguin'],	
+	letters: ['A', 'B', 'C', 'D', 'E','F',
+				'G', 'H', 'I', 'J', 'K', 'L',
+				'M', 'N', 'O', 'P', 'Q', 'R',
+				'S', 'T', 'U', 'V', 'W', 'X',
+				'Y', 'Z'],
 	lives: 10,
 	userInputs: [],
 	matchedLettersCount: 0,
@@ -36,6 +41,7 @@ var hangman = {
 
 		var initialWordToPrint = this.createInitialWordToPrint();
 		this.printWord(initialWordToPrint);
+	
 
 		document.querySelector("#userInputs").innerHTML = "";
 		document.querySelector("#lives").innerHTML = this.lives;
@@ -218,17 +224,41 @@ var hangman = {
 			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png">';
 		}
 	}, 
+
+	letterClick: function(letter){
+		this.userInput = letter.toUpperCase();
+		this.startGmae();
+	}
 }
 
 
 // event listener
 window.onload = function(event) {
+	
+	function letterClick(letter) {
+		hangman.userInput = letter.toUpperCase();
+		hangman.startGmae();
+	} //End onkeyup
+
+	var html = "<ul>";
+		for (var i = 0; i < hangman.letters.length; i++) {
+			html += '<li onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">' + hangman.letters[i] + "</li>";
+		};
+		html += "</ul>";
+	document.querySelector("#letterBtn").innerHTML = html;
+
 	hangman.init();	
 	
 	document.onkeyup = function(e) {
 		hangman.userInput = String.fromCharCode(e.keyCode).toUpperCase();
 		hangman.startGmae();
 	} //End onkeyup
+
+
+	
+	
+
+
 
 }//End window onload
 
