@@ -5,20 +5,10 @@ var loseCount = 0;
 
 // hangman Object
 var hangman = {
-	words: ['Hippopotamus', 
-			'Armadillo', 
-			'Porcupine', 
-			'Peacock', 
-			'Alligator', 
-			'Elephant', 
-			'Antelope',
-			'Pronghorn',
-			'Penguin'],	
-	letters: ['A', 'B', 'C', 'D', 'E','F',
-				'G', 'H', 'I', 'J', 'K', 'L',
-				'M', 'N', 'O', 'P', 'Q', 'R',
-				'S', 'T', 'U', 'V', 'W', 'X',
-				'Y', 'Z'],
+	words: [
+			['cat', 'cow', 'dinasaur'],
+			['kilukam', 'manichithrathzhu'],
+		   ],	
 	lives: 10,
 	userInputs: [],
 	matchedLettersCount: 0,
@@ -28,7 +18,7 @@ var hangman = {
 	wordWithMatchedLetters: "",
 	gameOver: false,
 
-	// initalies hangman properties
+	// initalies hangman properties and set DOM valus
 	init: function() {
 		this.gameOver = false;
 		this.lives = 10;
@@ -41,13 +31,12 @@ var hangman = {
 
 		var initialWordToPrint = this.createInitialWordToPrint();
 		this.printWord(initialWordToPrint);
-	
-		// set elements
+
 		document.querySelector("#userInputs").innerHTML = "";
 		document.querySelector("#lives").innerHTML = this.lives;
 		document.querySelector("#winCount").innerHTML = winCount;	
 		document.querySelector("#loseCount").innerHTML = loseCount;	
-		document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals1.png" class="img-responsive">';	
+		document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.PNG">';	
 	},
 
 	// proceed to hangman rules if user input is an alphabet
@@ -88,7 +77,7 @@ var hangman = {
 
 	// generate word randomly	
 	guessAWord: function() {
-		var computerRandomNumber = Math.floor(Math.random() * this.words.length);
+		var computerRandomNumber = Math.floor(Math.random() * this.words.length)+1
 		return this.words[computerRandomNumber];
 		console.log(this.computerWord);
 	},
@@ -163,7 +152,7 @@ var hangman = {
 
 	// print warning message
 	printWarningMessage: function (warningMessage) {
-		var html = "<div  class='text-info'>";
+		var html = "<div  class='text-danger'>";
 		html += warningMessage;
 		html += "</div>";
 
@@ -191,7 +180,7 @@ var hangman = {
 		if(this.lives === 0) {
 			loseCount++;
 			this.playAudio('assets/sounds/gameLost.mp3');
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png" class="img-responsive">';	
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.PNG">';	
 			this.gameOver = true;
 		}
 
@@ -205,10 +194,6 @@ var hangman = {
 	// starts new game
 	startNewOnGameOver: function() {
 		if(this.gameOver === true){
-			for (var i = 0; i < this.letters.length; i++) {
-				var id = "#li-"+this.letters[i];
-				document.querySelector(id).className = "liActive";
-			};
 			this.init();
 		}
 	},
@@ -223,45 +208,22 @@ var hangman = {
 	// shows hangman images
 	showHangmanImage: function() {
 		if(this.lives != 10){
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/hangman-'+ (9-this.lives) +'.png">';
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/hangman-'+ (9-this.lives) +'.PNG">';
 		}else{
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png">';
+			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.PNG">';
 		}
 	}, 
-
-	letterClick: function(letter){
-		this.userInput = letter.toUpperCase();
-		var id = "#li-"+letter;
-		document.querySelector(id).className = "liDisabled"
-		this.startGmae();
-	}
 }
 
 
 // event listener
-window.onload = function(event) {	
-
-	// add letter buttons
-	var html = "<ul>";
-		for (var i = 0; i < hangman.letters.length; i++) {
-			html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
-			html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
-			html +=  hangman.letters[i] + "</li>";
-		};
-		html += "</ul>";		
-	document.querySelector("#letterBtn").innerHTML = html;
-
+window.onload = function(event) {
 	hangman.init();	
 	
 	document.onkeyup = function(e) {
 		hangman.userInput = String.fromCharCode(e.keyCode).toUpperCase();
 		hangman.startGmae();
-	}
-
-	
-	
-
-
+	} //End onkeyup
 
 }//End window onload
 

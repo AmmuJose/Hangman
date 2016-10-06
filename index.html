@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+	<title>Hangman | Game</title>
 	<!-- Style Sheets -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
@@ -11,55 +12,63 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript" src="assets/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
-
-	<title>Hangman</title>
 </head>
 <body>
+	<body>
 	<div class="container">
-		<!-- Header -->
+		<!--  Navigation bar -->
+		<nav class="navbar navbar-default"> 
+      		<h1>Hangman</h1>
+    	</nav>
+  	</div>
+	<!-- Main Content -->
+	<div class="container">	
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<h1>Hangman</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12 col-sm-12">
-				<p id="rule">
+			<div class="col-md-12">
+				<p id="rules">
 					Press Any Letter to Start. <br>
-					Category is Animals and Birds <br><span id="warningMessage"></span>
-				</p>				
-			</div>
-		</div>	
-		<div class="row"><div id="letterBtn"></div></div>
-		<!-- content -->
-		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="col-md-2 col-sm-2"> </div>
-				<div class="col-md-4 col-sm-4"> 					
-					<div class="row"> Number of Lives Left: <span id="lives">10</span> </div>
-					<div class="row">Wins:  <sapn id="winCount"></span> </div>
-					<div class="row">Losses:  <span id="loseCount"></span> </div>
-
-				</div>	
-							
-				<div class="col-md-4 col-sm-5">									
-					<div class="row"> <h3>Word : <span id="word"></span></h3> </div>
-					<div class="row">
-						<div>Letters Already Gussed: <span id="userInputs"></span></div>
-					</div>						
-				</div>
-				<div class="col-md-2 col-sm-1"> </div>				
+					Category : Animals and Birds <br><span id="warningMessage"></span>
+				</p>
 			</div>
 		</div>
-
 		<div class="row">
-			<div class="col-md-12 col-sm-12 col-xs-12">
-				<div class="col-md-2 col-sm-2"> </div>
-				<div class="col-md-4 col-sm-4"> 
-						<div class="row"><div id="hangman"></div></div> 
+			<div class="col-md-7">				
+				<div class="row ">
+					<div class="col-md-12">
+						<div class="col-md-5 col-sm-4">
+							<div id="hangman-img-holder">
+								<img src="assets/images/animals.jpeg" alt="hangman image" height="150" width="190" id="hangman-img">
+							</div>
+						</div>
+						<div class="col-md-7 col-sm-8 margin-top-20 ">
+							<div>Wins :  <sapn id="winCount"></span></div>
+							<div>Losses :  <span id="loseCount"></span></div>
+							<div>Number of Lives Left : <span id="lives">10</span></div>
+							<div id="gameWord"><b>Word : <span id="word"></span></b></div>
+							<div>Letters Already Gussed: <span id="userInputs"></span></div>
+						</div>					
+					</div>
 				</div>
-				<div class="col-md-6 col-sm-6"> </div>
-			</div>	
+			</div>
+			<!-- Left side panel -->
+			<div class="col-md-3">
+				<div class="panel panel-default">    				
+    				<div class="panel-body">
+    					<div id="letterBtn"></div>
+    				</div>
+  				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>		
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<footer>
+					&copy; Copyright 2016 Neethu Jose
+				</footer>
+			</div>
 		</div>
+	</div>
 </body>
 </html>

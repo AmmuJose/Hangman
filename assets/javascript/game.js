@@ -28,7 +28,7 @@ var hangman = {
 	wordWithMatchedLetters: "",
 	gameOver: false,
 
-	// initalies hangman properties and set DOM valus
+	// initalies hangman properties
 	init: function() {
 		this.gameOver = false;
 		this.lives = 10;
@@ -42,20 +42,18 @@ var hangman = {
 		var initialWordToPrint = this.createInitialWordToPrint();
 		this.printWord(initialWordToPrint);
 	
-
+		// set elements
 		document.querySelector("#userInputs").innerHTML = "";
 		document.querySelector("#lives").innerHTML = this.lives;
 		document.querySelector("#winCount").innerHTML = winCount;	
 		document.querySelector("#loseCount").innerHTML = loseCount;	
-		document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals1.png" class="img-responsive">';	
+		document.querySelector("#hangman-img").src = 'assets/images/animals.png';	
 	},
 
 	// proceed to hangman rules if user input is an alphabet
 	startGmae: function() {
 		if(this.gameOver === false && this.isAlphabet()) {
 			this.checkRules();			
-		}else {
-			this.printWarningMessage("Please Enter a Letter.");
 		}
 	},
 
@@ -63,7 +61,7 @@ var hangman = {
 	checkRules: function() {
 		if(! this.checkInputAlreadyTried()) { // if letter is not tried
 
-			document.querySelector("#warningMessage").innerHTML = "";
+			this.disableLetterBtn();
 			this.pushToTriedValues(); // array for tried values
 			this.printUserTriedInputs(); // prit user input
 
@@ -81,8 +79,6 @@ var hangman = {
 				this.startNewOnGameOver();
 				document.querySelector("#word").innerHTML = this.wordWithMatchedLetters;
 			}
-		}else{
-			this.printWarningMessage("You Have Already Tried Letter: <b>" + this.userInput + "</b>");
 		}
 	},
 
@@ -161,15 +157,6 @@ var hangman = {
 		document.querySelector("#word").innerHTML = word;
 	},
 
-	// print warning message
-	printWarningMessage: function (warningMessage) {
-		var html = "<div  class='text-info'>";
-		html += warningMessage;
-		html += "</div>";
-
-		document.querySelector("#warningMessage").innerHTML = html;
-	},
-
 	// print user tried letters
 	printUserTriedInputs: function() {
 		var triedInputs = "";
@@ -191,7 +178,7 @@ var hangman = {
 		if(this.lives === 0) {
 			loseCount++;
 			this.playAudio('assets/sounds/gameLost.mp3');
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png" class="img-responsive">';	
+			document.querySelector("#hangman-img").src = "assets/images/animals.png";	
 			this.gameOver = true;
 		}
 
@@ -205,6 +192,10 @@ var hangman = {
 	// starts new game
 	startNewOnGameOver: function() {
 		if(this.gameOver === true){
+			for (var i = 0; i < this.letters.length; i++) {
+				var id = "#li-"+this.letters[i];
+				document.querySelector(id).className = "liActive";
+			};
 			this.init();
 		}
 	},
@@ -219,32 +210,39 @@ var hangman = {
 	// shows hangman images
 	showHangmanImage: function() {
 		if(this.lives != 10){
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/hangman-'+ (9-this.lives) +'.png">';
+			document.querySelector("#hangman-img").src  = "assets/images/hangman-"+ (9-this.lives) +".png";
 		}else{
-			document.querySelector("#hangman").innerHTML = '<img src="assets/images/animals.png">';
+			document.querySelector("#hangman-img").src  = "assets/images/animals.png";
 		}
 	}, 
 
+	// when user clicks letter Buttons 
 	letterClick: function(letter){
 		this.userInput = letter.toUpperCase();
+		this.disableLetterBtn();		
 		this.startGmae();
-	}
+	},
+
+	// disables letters that user has entered
+	disableLetterBtn: function() {
+		var id = "#li-"+ this.userInput;
+		document.querySelector(id).className = "liDisabled"
+	},
+
 }
 
 
 // event listener
-window.onload = function(event) {
-	
-	function letterClick(letter) {
-		hangman.userInput = letter.toUpperCase();
-		hangman.startGmae();
-	} //End onkeyup
+window.onload = function(event) {	
 
+	// add letter buttons
 	var html = "<ul>";
 		for (var i = 0; i < hangman.letters.length; i++) {
-			html += '<li onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">' + hangman.letters[i] + "</li>";
+			html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
+			html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
+			html +=  hangman.letters[i] + "</li>";
 		};
-		html += "</ul>";
+		html += "</ul>";		
 	document.querySelector("#letterBtn").innerHTML = html;
 
 	hangman.init();	
@@ -252,8 +250,7 @@ window.onload = function(event) {
 	document.onkeyup = function(e) {
 		hangman.userInput = String.fromCharCode(e.keyCode).toUpperCase();
 		hangman.startGmae();
-	} //End onkeyup
-
+	}
 
 	
 	
