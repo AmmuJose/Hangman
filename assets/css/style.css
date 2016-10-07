@@ -75,6 +75,7 @@ h1 {
 
 .panel {	
 	border: 1px solid #444;
+	margin-right: 5px;
 }
 
 .liActive,
