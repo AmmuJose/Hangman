@@ -20,7 +20,12 @@ body{
 #gameWord,
 #word,
 #rules {
-	color: #ffa500;	
+	color: #ffa500;		
+}
+
+#rules {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #4aaaa5;
 }
 
 #word {
@@ -35,7 +40,10 @@ body{
 #hangman-img-holder {
 	width: 200px;
 	height: 160px;
-	background-color: #000;
+	background-color: #110;
+	margin-bottom: 20px;
+	padding-left: 5px;
+	padding-top: 2px;
 }
 
 #hangman-img {
@@ -47,10 +55,10 @@ body{
 /* header */
 
 .navbar-default {
-	background-color: #000;
+	background-color: #962200;
 	border-color: #101;
 	padding-bottom: 12px;
-	color: #3399ff;
+	color: #111;
 	text-shadow: 2px 2px 4px #99cc00;
 }
 
@@ -100,7 +108,7 @@ h1 {
 
 /* footer */
 footer {
-	background-color: #000;
+	background-color: #962200;
 	text-align: center;
 	padding-top: 15px;
 	padding-bottom: 15px;
