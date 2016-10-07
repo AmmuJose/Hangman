@@ -246,12 +246,12 @@ window.onload = function(event) {
 	function addLetterButtons() {
 		// add letter buttons
 		var html = "<ul>";
-			for (var i = 0; i < hangman.letters.length; i++) {
-				html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
-				html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
-				html +=  hangman.letters[i] + "</li>";
-			};
-			html += "</ul>";		
+		for (var i = 0; i < hangman.letters.length; i++) {
+			html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
+			html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
+			html +=  hangman.letters[i] + "</li>";
+		};
+		html += "</ul>";		
 		document.querySelector("#letterBtn").innerHTML = html;
 	}
 	
