@@ -5,20 +5,20 @@ var loseCount = 0;
 
 // hangman Object
 var hangman = {
-	words: ['Hippopotamus', 
-			'Armadillo', 
-			'Porcupine', 
-			'Peacock', 
-			'Alligator', 
-			'Elephant', 
-			'Antelope',
-			'Pronghorn',
-			'Penguin'],	
+	words: ['Hippopotamus',
+	'Armadillo', 
+	'Porcupine', 
+	'Peacock', 
+	'Alligator', 
+	'Elephant', 
+	'Antelope',
+	'Pronghorn',
+	'Penguin'],	
 	letters: ['A', 'B', 'C', 'D', 'E','F',
-				'G', 'H', 'I', 'J', 'K', 'L',
-				'M', 'N', 'O', 'P', 'Q', 'R',
-				'S', 'T', 'U', 'V', 'W', 'X',
-				'Y', 'Z'],
+	'G', 'H', 'I', 'J', 'K', 'L',
+	'M', 'N', 'O', 'P', 'Q', 'R',
+	'S', 'T', 'U', 'V', 'W', 'X',
+	'Y', 'Z'],
 	lives: 10,
 	userInputs: [],
 	matchedLettersCount: 0,
@@ -141,11 +141,11 @@ var hangman = {
 		for (var i = 0; i < this.computerWordLength; i++) {				
 			if(this.computerWord.charAt(i).toUpperCase() == this.userInput) {
 				if(i === 0){
-					this.wordWithMatchedLetters = this.wordWithMatchedLetters.substring(0, i*2) + 
-												this.userInput.toUpperCase() + this.wordWithMatchedLetters.substring((i*2+1));
+					this.wordWithMatchedLetters = this.wordWithMatchedLetters.substring(0, i*2) +
+					this.userInput.toUpperCase() + this.wordWithMatchedLetters.substring((i*2+1));
 				}else{
 					this.wordWithMatchedLetters = this.wordWithMatchedLetters.substring(0, i*2) + 
-												this.userInput.toLowerCase() + this.wordWithMatchedLetters.substring((i*2+1));
+					this.userInput.toLowerCase() + this.wordWithMatchedLetters.substring((i*2+1));
 				}				
 				this.matchedLettersCount++;
 			}
@@ -235,16 +235,7 @@ var hangman = {
 // event listener
 window.onload = function(event) {	
 
-	// add letter buttons
-	var html = "<ul>";
-		for (var i = 0; i < hangman.letters.length; i++) {
-			html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
-			html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
-			html +=  hangman.letters[i] + "</li>";
-		};
-		html += "</ul>";		
-	document.querySelector("#letterBtn").innerHTML = html;
-
+	addLetterButtons();
 	hangman.init();	
 	
 	document.onkeyup = function(e) {
@@ -252,11 +243,18 @@ window.onload = function(event) {
 		hangman.startGmae();
 	}
 
+	function addLetterButtons() {
+		// add letter buttons
+		var html = "<ul>";
+			for (var i = 0; i < hangman.letters.length; i++) {
+				html += '<li id="li-'+hangman.letters[i]+'" class="liActive"';
+				html += 'onclick="hangman.letterClick(\''+ hangman.letters[i]+'\')">';
+				html +=  hangman.letters[i] + "</li>";
+			};
+			html += "</ul>";		
+		document.querySelector("#letterBtn").innerHTML = html;
+	}
 	
-	
-
-
-
 }//End window onload
 
 

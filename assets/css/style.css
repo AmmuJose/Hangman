@@ -80,9 +80,9 @@ h1 {
 
 .liActive,
 .liDisabled {
-	width: 30px;
-	height: 30px;
-	line-height: 30px;	
+	width: 26px;
+	height: 26px;
+	line-height: 26px;	
 	cursor: pointer;
 	color: #000;
 	margin: 5px;
@@ -132,6 +132,7 @@ footer {
 		width: 22px;
 		height: 22px;
 		line-height: 20px;
+		margin: 4px;
 	}
 
 	.panel {
