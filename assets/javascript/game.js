@@ -188,17 +188,17 @@ var hangman = {
     // increment win/lose count by one and play audio 
     winLoseCountAndAudioOnGameEnd: function() {
         if (this.lives === 0) {
+            this.playAudio('assets/sounds/gameLost.mp3');
             loseCount++;
             this.gameOver = true;
-            this.winOrLose = false;
-            this.playAudio('assets/sounds/gameLost.mp3');
+            this.winOrLose = false;            
         }
 
         if (this.matchedLettersCount == this.computerWordLength) {
+            this.playAudio('assets/sounds/gameWon.mp3');
             winCount++;
             this.winOrLose = true;
-            this.gameOver = true;
-            this.playAudio('assets/sounds/gameWon.mp3');
+            this.gameOver = true;            
         }
     },
 
@@ -215,6 +215,7 @@ var hangman = {
             }
             html += '<div class="load">New Word will load in 4 seconds. ';
             html += ' <i class="fa fa-spinner fa-spin" aria-hidden="true"></i> </div>';
+
             document.querySelector("#loadingMessage").innerHTML = html;
             timeOut = setTimeout(this.loadGame.bind(this), 4000);
         }
