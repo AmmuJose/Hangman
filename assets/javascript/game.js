@@ -6,15 +6,21 @@ var timeOut;
 
 // hangman Object
 var hangman = {
-    words: ['Hippopotamus',
+    words: ['Bearcat',
         'Armadillo',
         'Porcupine',
         'Peacock',
         'Alligator',
+        'Nightingale',
+        'Woodchuck',
+        'Woodpecker',
         'Elephant',
         'Antelope',
         'Pronghorn',
-        'Penguin'
+        'Penguin',
+        'Grasshopper',
+        'Hummingbird',
+        'Mosquito',
     ],
     letters: ['A', 'B', 'C', 'D', 'E',
         'F', 'G', 'H', 'I', 'J', 'K',
