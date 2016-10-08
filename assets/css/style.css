@@ -55,7 +55,7 @@ body {
 #hangman-img-holder {
     width: 200px;
     height: 160px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 #hangman-img {
@@ -161,8 +161,9 @@ footer {
         padding: 12px 0px 0px 12px;
         background-color: #222;
     }
-    #hangman-img {
-        margin-top: 0px;
+    #hangman-img-holder {
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     #rules {
         margin-bottom: 10px;
