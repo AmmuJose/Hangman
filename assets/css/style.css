@@ -1,159 +1,176 @@
-body{
-	line-height: 150%;
-	color: #ddd;
-	background-color: #111;	
+body {
+    line-height: 150%;
+    color: #ddd;
+    background-color: #111;
 }
 
 /* content */
 .margin-top-20 {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 #rules {
-	text-align: center;
-	margin-bottom: 25px;
+    text-align: center;
+    margin-bottom: 25px;
 }
+
 #gameWord {
-	margin-bottom: 6px;
+    margin-bottom: 6px;
 }
 
 #gameWord,
 #word,
 #rules {
-	color: #ffa500;		
+    color: #ffa500;
 }
 
 #rules {
-	padding-bottom: 5px;
-	border-bottom: 1px solid #4aaaa5;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #4aaaa5;
 }
 
 #word {
-	font-size: 1.7em; 	
+    font-size: 1.7em;
 }
 
-#userInputs,
 .category {
-	color: #3399ff;
+    color: #3399ff;
+}
+
+.load {
+    color: #ff4000;
+}
+
+.fa-spinner {
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.message {
+    font-size: 25px;
+    color: #40ff00;
+    font-weight: bold;
 }
 
 #hangman-img-holder {
-	width: 200px;
-	height: 160px;
-	background-color: #110;
-	margin-bottom: 20px;
-	padding-left: 5px;
-	padding-top: 2px;
+    width: 200px;
+    height: 160px;
+    background-color: #110;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    padding-top: 2px;
 }
 
 #hangman-img {
-	padding:2px;
-	margin-top: 3px;
-	background-color: #000;
+    padding: 2px;
+    margin-top: 3px;
+    background-color: #000;
 }
+
 
 /* header */
 
 .navbar-default {
-	background-color: #962200;
-	border-color: #101;
-	padding-bottom: 12px;
-	color: #111;
-	text-shadow: 2px 2px 4px #99cc00;
+    background-color: #962200;
+    border-color: #101;
+    padding-bottom: 12px;
+    color: #111;
+    text-shadow: 2px 2px 4px #99cc00;
 }
 
-h1 {	
-	font-size: 4em;
-	text-align: center;
+h1 {
+    font-size: 4em;
+    text-align: center;
 }
+
 
 /* letter buttons */
-.panel .panel-body{
-	padding: 5px 0px 0px 5px;
-	background-color: #222;
+
+.panel .panel-body {
+    padding: 5px 0px 0px 5px;
+    background-color: #222;
 }
 
-.panel {	
-	border: 1px solid #444;
-	margin-right: 5px;
+.panel {
+    border: 1px solid #444;
+    margin-right: 5px;
 }
 
 .liActive,
 .liDisabled {
-	width: 26px;
-	height: 26px;
-	line-height: 26px;	
-	cursor: pointer;
-	color: #000;
-	margin: 5px;
-	text-align: center;
-	font-weight: bold;
-	border: 1px solid #5bbbb9;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    cursor: pointer;
+    color: #000;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #5bbbb9;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    display: inline-block;
 }
+
 .liActive li:hover {
-	background-color: #888;
-	cursor: pointer;
+    background-color: #888;
+    cursor: pointer;
 }
 
 .liActive {
-	background-color: #3399ff;
+    background-color: #3399ff;
 }
 
 .liDisabled {
-	background-color: #888;
-	border: 1px solid #898;
+    background-color: #888;
+    border: 1px solid #898;
 }
+
 
 /* footer */
+
 footer {
-	background-color: #962200;
-	color: #aaa;
-	text-align: center;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	font-size: 11px;
-	clear: both;
+    background-color: #962200;
+    color: #aaa;
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-size: 11px;
+    clear: both;
 }
+
 
 /* media query */
+
 @media (min-width: 1200px) {
-  	.container {
-   		width: 970px; 
-   	}
+    .container {
+        width: 970px;
+    }
 }
 
-
-@media (max-width: 414px){
-	.liActive,
-	.liDisabled {
-		width: 22px;
-		height: 22px;
-		line-height: 20px;
-		margin: 4px;
-	}
-
-	.panel {
-		margin: 15px;
-	}
-
-	.panel .panel-body{
-		padding: 12px 0px 0px 12px;
-		background-color: #222;
-	}
-
-	#hangman-img {
-		margin-top: 0px;
-	}
-
-	#rules {
-		margin-bottom:10px;
-	}
-
-	#rules {
-		text-align: left;
-		margin-left: 15px;
-	}
+@media (max-width: 414px) {
+    .liActive,
+    .liDisabled {
+        width: 22px;
+        height: 22px;
+        line-height: 20px;
+        margin: 4px;
+    }
+    .panel {
+        margin: 15px;
+    }
+    .panel .panel-body {
+        padding: 12px 0px 0px 12px;
+        background-color: #222;
+    }
+    #hangman-img {
+        margin-top: 0px;
+    }
+    #rules {
+        margin-bottom: 10px;
+    }
+    #rules {
+        text-align: left;
+        margin-left: 15px;
+    }
 }
