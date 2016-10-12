@@ -3,7 +3,6 @@ var winCount = 0;
 var loseCount = 0;
 var timeOut;
 
-
 // hangman Object
 var hangman = {
     words: ['Bearcat',
@@ -72,20 +71,17 @@ var hangman = {
     // validate against game rules
     checkRules: function() {
         if (!this.checkInputAlreadyTried()) { // if letter is not tried
-
             this.disableLetterBtn();
             this.pushToTriedValues(); // array for tried values
             //this.printUserTriedInputs(); // prit user input
 
             if (!this.checkWordContainsUserInput()) { // if user entered letter is not in the word
-
                 this.printLivesLeft();
                 this.showHangmanImage();
                 this.winLoseCountAndAudioOnGameEnd(); //if lives zero set audio and winCount                
                 this.startNewOnGameOver();
 
             } else { // if user entered letter is in the word
-
                 this.createWordWithMatchedLetters();
                 this.winLoseCountAndAudioOnGameEnd(); // if user answer is correct
                 this.startNewOnGameOver();
@@ -191,14 +187,14 @@ var hangman = {
             this.playAudio('assets/sounds/gameLost.mp3');
             loseCount++;
             this.gameOver = true;
-            this.winOrLose = false;            
+            this.winOrLose = false;
         }
 
         if (this.matchedLettersCount == this.computerWordLength) {
             this.playAudio('assets/sounds/gameWon.mp3');
             winCount++;
             this.winOrLose = true;
-            this.gameOver = true;            
+            this.gameOver = true;
         }
     },
 
@@ -260,30 +256,31 @@ var hangman = {
         document.querySelector(id).className = "liDisabled"
     },
 
+    // add letter buttons/key board
+    addLetterButtons: function() {
+        // add letter buttons
+        var html = "<ul>";
+        for (var i = 0; i < this.letters.length; i++) {
+            html += '<li id="li-' + this.letters[i] + '" class="liActive"';
+            html += 'onclick="hangman.letterClick(\'' + this.letters[i] + '\')">';
+            html += this.letters[i] + "</li>";
+        };
+        html += "</ul>";
+        document.querySelector("#letterBtn").innerHTML = html;
+    },
+
 }
 
 
 // event listener
 window.onload = function(event) {
 
-        addLetterButtons();
+        hangman.addLetterButtons();
         hangman.init();
 
         document.onkeyup = function(e) {
             hangman.userInput = String.fromCharCode(e.keyCode).toUpperCase();
             hangman.startGmae();
         }
-
-        function addLetterButtons() {
-            // add letter buttons
-            var html = "<ul>";
-            for (var i = 0; i < hangman.letters.length; i++) {
-                html += '<li id="li-' + hangman.letters[i] + '" class="liActive"';
-                html += 'onclick="hangman.letterClick(\'' + hangman.letters[i] + '\')">';
-                html += hangman.letters[i] + "</li>";
-            };
-            html += "</ul>";
-            document.querySelector("#letterBtn").innerHTML = html;
-        }
-
+        
     } //End window onload
