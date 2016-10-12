@@ -271,16 +271,13 @@ var hangman = {
 
 }
 
-
 // event listener
 window.onload = function(event) {
-
         hangman.addLetterButtons();
         hangman.init();
 
         document.onkeyup = function(e) {
             hangman.userInput = String.fromCharCode(e.keyCode).toUpperCase();
             hangman.startGmae();
-        }
-        
+        }        
     } //End window onload
